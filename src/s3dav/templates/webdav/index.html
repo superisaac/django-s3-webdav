@@ -1,0 +1,32 @@
+<html>
+<head></head>
+
+<body>
+<h1>Index of {{ res.get_url }}</h1>
+<table>
+<tr>
+    <th>Name</th>
+    <th>Last modified</th>
+    <th>Size</th>
+    <th>Description</th>
+</tr>
+<tr><th colspan="5"><hr></th></tr>
+<tr>
+    <td><a href="{{ res.get_parent.get_url }}">Parent Directory</a></td>
+    <td></td>
+    <td align="right">-</td>
+    <td></td>
+</tr>
+{% for child in res.get_children %}
+<tr>
+    <td><a href="{{ child.get_url }}">{{ child.get_name }}</a></td>
+    <td align="right">{{ child.get_mtime|date:"d-M-Y H:i" }}</td>
+    <td align="right">{{ child.get_size|filesizeformat }}</td>
+    <td></td>
+</tr>
+{% endfor %}
+<tr><th colspan="5"><hr></th></tr>
+</table>
+<p>Django-WebDAV - <a href="http://code.google.com/p/django-webdav/">http://code.google.com/p/django-webdav/</a></p>
+</body>
+</html>
